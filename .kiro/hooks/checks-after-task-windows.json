@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Lint and test after each spec task (Windows)",
+      "description": "Windows version of checks-after-task. Runs ruff and pytest through Windows PowerShell, no Git Bash needed. Skips cleanly until Task 2 creates pyproject.toml. On Linux and macOS this command is not found and the hook exits without blocking; the sh hook runs there instead.",
+      "trigger": "PostTaskExec",
+      "action": {
+        "type": "command",
+        "command": "powershell -NoProfile -ExecutionPolicy Bypass -File .kiro/hooks/scripts/checks.ps1",
+        "timeout": 300
+      }
+    }
+  ]
+}

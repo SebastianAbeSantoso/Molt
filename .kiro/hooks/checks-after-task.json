@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Lint and test after each spec task",
+      "description": "After a spec task finishes, run ruff and pytest (Python, no GPU needed). Skips cleanly until Task 2 creates pyproject.toml.",
+      "trigger": "PostTaskExec",
+      "action": {
+        "type": "command",
+        "command": "sh -c 'root=$(git rev-parse --show-toplevel 2>/dev/null || pwd); [ -d \"$root/Molt/.git\" ] && root=\"$root/Molt\"; cd \"$root\" || exit 1; if [ -f pyproject.toml ]; then uv run ruff check . && uv run ruff format --check . && uv run pytest -q; else echo \"molt checks: no pyproject.toml yet (before Task 2), skipping\"; fi'",
+        "timeout": 300
+      }
+    }
+  ]
+}
