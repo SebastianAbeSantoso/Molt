@@ -133,6 +133,8 @@ Both GPUs have 8 GB, so they test portability across vendors, not low-end versus
 
 ## Quickstart
 
+> **Planned flow.** Commands are coming after Task 2.
+
 Molt targets Windows 10 and 11. Builds and the first Molt package will be published on the [Releases](https://github.com/SebastianAbeSantoso/Molt/releases) page.
 
 **System requirements**
@@ -144,7 +146,7 @@ Molt targets Windows 10 and 11. Builds and the first Molt package will be publis
 | Storage | NVMe SSD recommended; the SSD is the cold tier for expert weights |
 | Network | Needed only to download Molt and the model package. Chat runs fully offline. |
 
-**Using Molt**
+**Using Molt (planned)**
 
 1. Download Molt and an Elastic Package from the Releases page.
 2. Start Molt. It profiles the GPU, system RAM, and storage, and shows what it found.
@@ -227,7 +229,7 @@ Each half of Molt builds on serious existing work.
 | [D2MoE](https://arxiv.org/abs/2504.15299) (2025) | Matryoshka weight quantization, so experts nest across bit-widths, with I/O-aware scheduling on devices. | The model for a possible future precision skin. |
 | [MC-MoE](https://arxiv.org/abs/2410.06270) (2024) | Training-free mixed-precision quantization plus online dynamic pruning for MoE models. | Related compression work. Molt keeps top-K fixed and varies width instead. |
 | [Yao et al.](https://arxiv.org/abs/2011.01112) (2020) | Casts deep neural network workflows as imprecise computations with mandatory and optional parts, applied to layers and early exits. | The closest earlier use of imprecise computation in neural networks. Molt applies it to MoE expert width. |
-| DATS (RTSS 2026) | Splits each LLM request into prefill, a validator-backed mandatory prefix, and an optional suffix. | Imprecise computation over tokens. Molt applies it over expert width. |
+| DATS (RTSS 2026) | Splits each LLM request into prefill, a validator-backed mandatory prefix, and an optional suffix. Primary source to be verified in Task 1.1. | Imprecise computation over tokens. Molt applies it over expert width. |
 
 Molt builds on [llama.cpp](https://github.com/ggml-org/llama.cpp) and its GGUF format and does not reimplement an inference engine.
 
